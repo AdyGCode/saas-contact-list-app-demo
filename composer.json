@@ -20,6 +20,8 @@
     "require-dev": {
         "brianium/paratest": "^7.19",
         "fakerphp/faker": "^1.24",
+        "laradumps/laradumps": "^5.3",
+        "laradumps/laradumps-core": "^4.1",
         "laravel/boost": "^2.2",
         "laravel/pail": "^1.2.5",
         "laravel/pint": "^1.27",
