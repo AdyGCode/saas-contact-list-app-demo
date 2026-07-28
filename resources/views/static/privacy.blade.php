@@ -10,6 +10,8 @@
 
             <h1 class="text-6xl">Privacy Policy</h1>
 
+            <!-- TODO: Need to add the privacy policy here. -->
+
             <p>TODO: Need to add the privacy policy here.</p>
 
         </main>

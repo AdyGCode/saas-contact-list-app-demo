@@ -10,6 +10,8 @@
 
             <h1 class="text-6xl">Contact Us</h1>
 
+            <!-- TODO: Need to add Contact Us page content here. -->
+
             <p>TODO: Need to add Contact Us page content here.</p>
 
         </main>
