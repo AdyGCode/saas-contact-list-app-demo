@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class StaticPageController extends Controller
 {
     /**
-     * Show the Home View
+     * Show the Home view
      */
     public function home()
     {
@@ -13,25 +13,34 @@ class StaticPageController extends Controller
     }
 
     /**
-     * Show the Home View
+     * Show the Home view
      */
     public function index()
     {
         return view('static.home');
     }
 
+    /**
+     * Show the About view
+     */
     public function about()
     {
-        //        return view('static.about');
+        return view('static.about');
     }
 
-    public function contact()
+    /**
+     * Show the Contact Us view
+     */
+    public function contactUs()
     {
-        //        return view('static.contact');
+        return view('static.contact-us');
     }
 
+    /**
+     * Show the Privacy policy view
+     */
     public function privacy()
     {
-        //        return view('static.privacy');
+        return view('static.privacy');
     }
 }
