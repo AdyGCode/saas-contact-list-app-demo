@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Team Related routes
  */
@@ -10,7 +11,6 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ResentInvitationController;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\TeamController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('invitations/{invitation:code}', [InvitationController::class, 'show'])->name('teams.invitations.show');

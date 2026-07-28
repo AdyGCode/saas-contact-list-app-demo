@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Static page routes
  *
@@ -7,13 +8,17 @@
  *
  * Note we have a demo route that is used for demonstrating the UI Components
  */
+
+use App\Http\Controllers\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home')->name('home');
+// Route::view('/', 'home')->name('home');
 
-//Route::get('/about',[StaticPageController::class,'about'])->name('about');
-//Route::get('/privacy',[StaticPageController::class,'privacy'])->name('privacy');
-//Route::get('/contact-us',[StaticPageController::class,'contactUs'])->name('contact-us');
+Route::get('/', [StaticPageController::class, 'home'])->name('home');
 
-//Route::get('/demo',[StaticPageController::class,'demo'])->name('demo');
-//Route::post('/demo',[StaticPageController::class,'demoForm'])->name('demo-submit');
+// Route::get('/about',[StaticPageController::class,'about'])->name('about');
+// Route::get('/privacy',[StaticPageController::class,'privacy'])->name('privacy');
+// Route::get('/contact-us',[StaticPageController::class,'contactUs'])->name('contact-us');
+
+// Route::get('/demo',[StaticPageController::class,'demo'])->name('demo');
+// Route::post('/demo',[StaticPageController::class,'demoForm'])->name('demo-submit');

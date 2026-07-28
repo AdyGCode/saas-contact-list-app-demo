@@ -1,24 +1,25 @@
 <?php
-//# Backup file only
-//# Will be deleted
+
+// # Backup file only
+// # Will be deleted
 //
-//use App\Http\Controllers\Admin;
-//use App\Http\Controllers\AppController;
-//use App\Http\Controllers\InvitationController;
-//use App\Http\Controllers\MembershipController;
-//use App\Http\Controllers\ResentInvitationController;
-//use App\Http\Controllers\Settings;
-//use App\Http\Controllers\TeamController;
-//use App\Http\Controllers\UserAvatarController;
-//use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\Admin;
+// use App\Http\Controllers\AppController;
+// use App\Http\Controllers\InvitationController;
+// use App\Http\Controllers\MembershipController;
+// use App\Http\Controllers\ResentInvitationController;
+// use App\Http\Controllers\Settings;
+// use App\Http\Controllers\TeamController;
+// use App\Http\Controllers\UserAvatarController;
+// use Illuminate\Support\Facades\Route;
 //
-//Route::view('/', 'home')->name('home');
+// Route::view('/', 'home')->name('home');
 //
-//Route::get('avatars/{user}', [UserAvatarController::class, 'show'])->name('avatars.show');
+// Route::get('avatars/{user}', [UserAvatarController::class, 'show'])->name('avatars.show');
 //
-//Route::get('invitations/{invitation:code}', [InvitationController::class, 'show'])->name('teams.invitations.show');
+// Route::get('invitations/{invitation:code}', [InvitationController::class, 'show'])->name('teams.invitations.show');
 //
-//Route::middleware(['auth'])->prefix('app')->group(function () {
+// Route::middleware(['auth'])->prefix('app')->group(function () {
 //    Route::redirect('settings', 'settings/profile');
 //    Route::get('settings/profile', [Settings\ProfileController::class, 'edit'])->name('settings.profile.edit');
 //    Route::put('settings/profile', [Settings\ProfileController::class, 'update'])->name('settings.profile.update');
@@ -66,4 +67,4 @@
 //
 //        Route::delete('impersonation', [Admin\ImpersonationController::class, 'destroy'])->name('impersonation.destroy');
 //    });
-//});
+// });

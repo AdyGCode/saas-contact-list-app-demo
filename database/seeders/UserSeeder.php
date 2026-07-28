@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -22,7 +21,7 @@ class UserSeeder extends Seeder
                 'email' => 'supervisor@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['super-user','admin',],
+                'roles' => ['super-user', 'admin'],
                 'team_role' => 'admin',
                 'permissions' => [],
             ],
@@ -95,7 +94,7 @@ class UserSeeder extends Seeder
 
         foreach ($seedUsers as $newUser) {
             // Assign user as team member by default
-            $newUser['role'] = $roles['team_role']??"member";
+            $newUser['role'] = $roles['team_role'] ?? 'member';
             unset($newUser['team_role']);
 
             // grab the roles & additional permissions from the seed users

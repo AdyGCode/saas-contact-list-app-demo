@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Current User Logged in Profile
  *
@@ -7,7 +8,6 @@
 
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\UserAvatarController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('avatars/{user}', [UserAvatarController::class, 'show'])->name('avatars.show');

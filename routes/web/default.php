@@ -1,2 +1,3 @@
 <?php
-# A default file just in case
+
+// A default file just in case

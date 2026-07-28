@@ -6,7 +6,7 @@
 <body
     class="flex flex-col min-h-screen bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
 <header class="z-10 border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
-    <x-container class="flex items-center max-lg:py-3 bg-yellow-200">
+    <x-container class="flex items-center max-lg:py-3 ">
         <x-button type="button" command="show-modal" commandfor="mobile_nav"
                   icon size="xs" before="phosphor-list" class="lg:hidden me-3">
             <span class="sr-only">{{ __('Toggle navigation') }}</span>

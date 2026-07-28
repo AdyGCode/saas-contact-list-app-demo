@@ -437,7 +437,7 @@ to
 <x-container class="flex items-center max-lg:py-3 bg-yellow-200">
 ```
 
-This will colour the logo/user area pale yellow.
+This will colour the logo/user area pale yellow, but not the complete top bar area.
 
 Now, immediately under this you find a button:
 
@@ -970,20 +970,299 @@ We are now able to update pages (Welcome/Home) and add new pages (About, Contact
 > down with the team name. 
 > 
 > This reduces visual clutter, but at the cost of possible ease of use.
-> ..
+> 
 > There may also be some other small UI tweaks, such as number of columns shown at various 
 > screen sizes. 
 
 
-
 ---
 
+Structuring our views folder structure
+
+The views folder will have additional folders for each section of the application.
+
+We suggest that you use the following structure:
+
+```mermaid
+flowchart LR
+    ROOT[Application Root] --> RES[resources]
+    RES --> ADMIN[admin]
+    RES --> CLIENT[client]
+    RES --> STATIC[static]
+    
+    STATIC --> HOME[welcome.blade.php]
+    STATIC --> ABOUT[about.blade.php]
+    STATIC --> PRIVACY[privacy.blade.php]
+    STATIC --> CONTACT[contact-us.blade.php]
+    
+    CLIENT --> CONTACTS[contacts]
+    CLIENT --> CATEGORIES[categories]
+    
+    ADMIN --> TEAMS[teams]
+    ADMIN --> USERS[users]
+    ADMIN --> ADMIN_CATEGORIES[categories]
+```
+
+To create the base folder structure you may click on the folder to contain the new 
+directory/folder, then use the File --> New --> Directory steps.
+
+Alternatively, and probably at least 3&times; faster is to use the commands:
+
+```shell
+mkdir -p resources/views/{admin,client,static}
+mkdir -p resources/views/client/{contacts,categories}
+mkdir -p resources/views/admin/{teams,users,categories}
+```
+
+We will also put `.gitignore` files into each folder using:
+
+```shell
+touch resources/views/{admin,client,static}/.gitignore
+touch resources/views/client/{contacts,categories}/.gitignore
+touch resources/views/admin/{teams,users,categories}/.gitignore
+```
+
+You now have 8 "new" folders with 8 `.gitignore` files in just a few commands.
+
+
 Create a new welcome page
+
+To create our new welcome page we will:
+
 - Backup existing welcome page
 - Create new page using the app template
 
+Backing up the current welcome page is as easy as moving it.
+
+```shell
+mv resources/views/home.blade.php resources/views/static/home-old.blade.php
+```
+
+We will also create a new blank blade file for the new home page.
+
+```shell
+touch resources/views/home.blade.php
+```
+
+If you got to the `http://localhost:8000` address, youy will see a totally blank page.
+This is the starting piont.
+
+Open this new blank file, and add:
+
+```php
+<x-layouts.app :title="__('Home')">
+   {{-- Left Column --}}
+   {{-- Right Column --}}
+</x-layouts.app>
+```
+
+You may need to refresh the page, and when you do the new front page will be pretty bare. 
+it will have the site logo, menu bar and footer.
+
+![New 'blank' Home Page](documentation/img/home-page-1.png)
+
+Now we can start to fill out the page.
+
+Around the two comment lines we are going to add a "wrapper":
+
+> Note: 
+>
+> We add colour to the backgrounds to make it easier for you to identify each part.
+> Once the pages are completed, we will update these to suit our style.
+>
+> Also, we have made the transition last for 2 seconds (2000ms) so that it is more noticable 
+> during development. This would normally be about 750ms.
+
+```php
+<x-layouts.app :title="__('Home')">
+
+    <div class="flex items-center justify-center w-full
+            transition-opacity opacity-100 duration-2000
+            lg:grow starting:opacity-0">
+        <main class="w-full max-w-[335px] lg:max-w-4xl
+                     flex flex-col-reverse lg:flex-row
+                     gap-4 bg-green-100">
+                     
+            {{-- Left Column --}}
+            
+            {{-- Right Column --}}
+            
+        </main>
+    </div>
+
+</x-layouts.app>
+```
+
+Next add the Left Column content, by replacing the `{{-- Left Column --}}` comment:
+
+```php
+<section class="flex flex-col gap-2
+                text-sm leading-6 flex-1 p-6 pb-12 lg:p-20
+                bg-gray-100 text-gray-600
+                dark:bg-gray-900 dark:text-gray-400
+                inset-ring inset-ring-gray-500/50
+                rounded-lg">
+    <h1 class="text-xl mb-1 font-medium text-gray-900 dark:text-gray-200">
+        About the Application
+    </h1>
+    <p class="mb-2 ">
+        This front page must show an inviting screen to advertise and promote the
+        application.
+    </p>
+    <p>
+        Include items that tell the user about the application, what it does, what
+        it does better than others.
+    </p>
+</section>
+```
+
+The right column is next, replacing the `{{-- Right Column --}}` comment with:
+
+```php
+<section class="text-sm leading-6 flex-1 p-6 pb-12 lg:p-20
+                text-gray-700 dark:text-gray-300
+                bg-gray-100 dark:bg-gray-900
+                inset-ring inset-ring-gray-500/50
+                rounded-lg">
+    <h1 class="text-xl mb-1 font-medium dark:text-gray-200">
+        Let&apos;s get started
+    </h1>
+    <p class="mb-2">
+        Laravel has an incredibly rich ecosystem.
+    <br>
+        We suggest starting with the following...
+    </p>
+
+    <ul class="flex flex-col mb-4 lg:mb-6">
+        <li class="flex items-center gap-4 py-2">
+            <a href="https://laravel.com/docs" target="_blank"
+               class="inline-flex items-center space-x-1
+                      font-medium underline underline-offset-4
+                      hover:text-gray-800 text-gray-600
+                      hover:dark:text-gray-200 dark:text-gray-400">
+                <x-phosphor-book-bold class="text-gray-600 dark:text-gray-400 w-4
+                h-4 mr-4"/>
+                Read the Documentation
+                <x-phosphor-arrow-up-right class="text-gray-600 dark:text-gray-400
+                 w-3
+                h-3 ml-1"/>
+            </a>
+        </li>
+        <li class="flex items-center gap-4 py-2">
+            <a href="https://laracasts.com" target="_blank"
+               class="inline-flex items-center space-x-1
+                      font-medium underline underline-offset-4
+                      hover:text-gray-800 text-gray-600
+                      hover:dark:text-gray-200 dark:text-gray-400">
+                <x-phosphor-video-bold class="text-gray-600 dark:text-gray-400
+                w-4 h-4 mr-4"/>
+                Watch video tutorials at Laracasts
+                <x-phosphor-arrow-up-right
+                    class="text-gray-600 dark:text-gray-400  w-3 h-3 ml-1"/>
+            </a>
+        </li>
+        <li class="flex items-center gap-4 py-2">
+            <a href="https://laracasts.com" target="_blank"
+               class="inline-flex items-center space-x-1
+                      font-medium underline underline-offset-4
+                      hover:text-gray-800 text-gray-600
+                      hover:dark:text-gray-200 dark:text-gray-400">
+                <x-phosphor-brain-bold
+                    class="text-gray-600 dark:text-gray-400 w-4 h-4 mr-4"/>
+                Practice coding without using AI
+                <x-phosphor-arrow-up-right
+                    class="text-gray-600 dark:text-gray-400 w-3 h-3 ml-1"/>
+            </a>
+        </li>
+    </ul>
+
+</section>
+```
+
+With a few changes to the colours (removed the yellow background on navigation) we get:
+
+![Home (Welcome) Page layout completed](documentation/img/home-page-2.png)
+
+and in Dark mode:
+
+![Home (Welcome) Page layout in dark mode](documentation/img/home-page-3.png)
 
 
+
+Static Page Controller
+
+We are now ready to make a change in how we handle the Home page, ready for the other 
+"static" pages such as privacy policy, contact us, et al.
+
+We call these pages "static" as they may perform some databse interaction, but are not a 
+major feature. The home page is a good example, but also the contact-us page that may have a 
+form that user's could complete to send a message to the site owners.
+
+We will be doing the following:
+- Creating a Static Page Controller
+- Updating the static page routes
+- Moving the home page to the `views/static` pages folder
+
+Creating the controller
+
+To create a new controller that has "resourceful" stubs we use:
+
+```shell
+php artisan make:controller StaticPageController
+```
+
+Now open the new `App/Http/Controllers/StaticPageController.php` file.
+
+We are going to add the `index` method, which will be for the home route, but also we will 
+create a `home` method as a backup.
+
+```php
+/**
+ * Show the Home View
+ */
+public function index()
+{
+    return view('static.home');
+}
+```
+
+The `home` method could be then written as:
+
+```php
+/**
+ * Show the Home View
+ */
+public function home()
+{
+    return $this->index();
+}
+```
+
+
+Update the Static Routes
+
+We next update the `routes/web/static.php` file. Add 
+`use App\Http\Controllers\StaticPageController;` to ensure that the Static page controller 
+is available, then, comment out the `Route::view` line and add a new `Route::get` line. 
+
+```php
+use App\Http\Controllers\StaticPageController;
+use Illuminate\Support\Facades\Route;
+
+// Route::view('/', 'home')->name('home');
+
+Route::get('/',[StaticPageController::class,'home'])->name('home');
+
+```
+
+Now the final step is to move the home page into the static views folder:
+
+```shell
+mv resources/views/home.blade.php resources/views/static/home.blade.php
+```
+
+Refreshing the home page should result in the site updating and showing the home page as 
+expected.
 
 
 

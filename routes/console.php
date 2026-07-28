@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
-
-
-# Static page routes: home, about, privacy, et al
+// Static page routes: home, about, privacy, et al
 
 $basePath = dirname(__DIR__);
 
