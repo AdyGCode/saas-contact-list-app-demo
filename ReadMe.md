@@ -1339,6 +1339,7 @@ Open this new Blade file and add:
 
             <h1 class="text-6xl">Privacy Policy</h1>
 
+            <!-- TODO: Need to add the privacy policy here. -->
             <p>TODO: Need to add the privacy policy here.</p>
 
         </main>
@@ -1393,9 +1394,6 @@ Update each route to the appropriate entry:
 
 
 Exercise: Complete the same task for the mobile navigation and also in the page footer!
-
-
-
 
 
 
