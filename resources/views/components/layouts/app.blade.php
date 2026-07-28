@@ -12,7 +12,7 @@
             <span class="sr-only">{{ __('Toggle navigation') }}</span>
         </x-button>
 
-        <a href="{{ route('app') }}">
+        <a href="{{ route('home') }}">
             <x-app-logo width="24" height="24"/>
             <span class="sr-only">{{ config('app.name') }}</span>
         </a>
@@ -27,13 +27,13 @@
             @endauth
 
             {{-- Add any default menu items here: About, Privacy, etc --}}
-            <x-navbar.item href="{{ route('home') }}">
+            <x-navbar.item href="{{ route('about') }}">
                 {{ __('About') }}
             </x-navbar.item>
-            <x-navbar.item href="{{ route('home') }}">
+            <x-navbar.item href="{{ route('privacy') }}">
                 {{ __('Privacy') }}
             </x-navbar.item>
-            <x-navbar.item href="{{ route('home') }}">
+            <x-navbar.item href="{{ route('contact-us') }}">
                 {{ __('Contact Us') }}
             </x-navbar.item>
 
@@ -239,15 +239,15 @@
 
             <x-navlist.group>
                 {{-- Add any default menu items here: About, Privacy, etc --}}
-                <x-navbar.item href="{{ route('home') }}"
+                <x-navbar.item href="{{ route('about') }}"
                                before="phosphor-file-text">
                     {{ __('About') }}
                 </x-navbar.item>
-                <x-navbar.item href="{{ route('home') }}"
+                <x-navbar.item href="{{ route('privacy') }}"
                                before="phosphor-file-text">
                     {{ __('Privacy') }}
                 </x-navbar.item>
-                <x-navbar.item href="{{ route('home') }}"
+                <x-navbar.item href="{{ route('contact-us') }}"
                                before="phosphor-envelope">
                     {{ __('Contact Us') }}
                 </x-navbar.item>
@@ -291,19 +291,19 @@
             <h4 class="text-gray-400">Site</h4>
             <ul>
                 <li>
-                    <x-link href="{{ route('home') }}"
+                    <x-link href="{{ route('about') }}"
                             class="text-gray-500 text-xs">
                         About
                     </x-link>
                 </li>
                 <li>
-                    <x-link href="{{ route('home') }}"
+                    <x-link href="{{ route('privacy') }}"
                             class="text-gray-500 text-xs">
                         Privacy
                     </x-link>
                 </li>
                 <li>
-                    <x-link href="{{ route('home') }}"
+                    <x-link href="{{ route('contact-us') }}"
                             class="text-gray-500 text-xs">
                         Contact Us
                     </x-link>
@@ -315,19 +315,19 @@
             <h4 class="text-gray-400">Useful Links</h4>
             <ul>
                 <li>
-                    <x-link href="https://northmetrotafe.wa.edu.au"
+                    <x-link href="https://northmetrotafe.wa.edu.au" target="_blank"
                             class="text-gray-500 text-xs">
                         North Metro TAFE
                     </x-link>
                 </li>
                 <li>
-                    <x-link href="https://github.com/AdyGCode/saas-contact-list-demo"
+                    <x-link href="https://github.com/AdyGCode/saas-contact-list-app" target="_blank"
                             class="text-gray-500 text-xs">
                         GitHub Repo
                     </x-link>
                 </li>
                 <li>
-                    <x-link href="https://northmetrotafe.wa.edu.au"
+                    <x-link href="https://northmetrotafe.wa.edu.au" target="_blank"
                             class="text-gray-500 text-xs">
                         North Metro TAFE
                     </x-link>

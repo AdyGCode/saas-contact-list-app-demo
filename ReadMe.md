@@ -1255,7 +1255,7 @@ Route::get('/',[StaticPageController::class,'home'])->name('home');
 
 ```
 
-Now the final step is to move the home page into the static views folder:
+Now the final step is to move the home page into the `views/static` folder:
 
 ```shell
 mv resources/views/home.blade.php resources/views/static/home.blade.php
@@ -1263,6 +1263,139 @@ mv resources/views/home.blade.php resources/views/static/home.blade.php
 
 Refreshing the home page should result in the site updating and showing the home page as 
 expected.
+
+Adding Placeholders for Static Pages
+
+As a mini exercise we will now quickly create placeholder pages for the Privacy, Contact-Us 
+and About, plus add the routes and Static Page Controller methods.
+
+The placeholder pages will look line this:
+
+![Example placeholder page for About, Privacy and Contact us pages](documentation/img/static-pages-placeholder-example-1.png)
+
+The table below gives the crucial information for file names, endpoints and methods.
+
+| Page       | View Filename                 | Endpoint      | Method        | Route Name   |
+|------------|-------------------------------|---------------|---------------|--------------|
+| About      | `static/about.blade.php`      | `/about`      | `about()`     | `about`      |
+| Privacy    | `static/privacy.blade.php`    | `/privacy`    | `privacy()`   | `privacy`    |
+| Contact Us | `static/contact-us.blade.php` | `/contact-us` | `contactUs()` | `contact-us` |
+
+> **Remember**: All view files are stored in the `resources/views/` folder.
+
+
+Add the Routes to the Web Static Routes file
+
+Open the `routes/web/static.php` file and add the required routes. For example:
+
+```php
+ Route::get('/about',[StaticPageController::class,'about'])->name('about');
+```
+
+Do the same for the Privacy and Contact Us pages.
+
+
+
+Add the Methods to the Static Page Controller
+
+Open the `App/Http/Controllers/StaticPageController.php` file and add new methods for each 
+of the new pages. Here is an example.
+
+```php
+    /**
+     * Show the Privacy policy view
+     */
+    public function privacy()
+    {
+        return view('static.privacy');
+    }
+```
+
+Create placeholder views for Privacy, Contact Us and About
+
+To do this we will create a blank file, then use the App layout to give the page basics.
+
+In the content area we will add a Simple placeholder to remind us to complete this later.
+
+
+Create a blank blade view file
+
+```shell
+touch resources/views/static/privacy.blade.php
+```
+
+Open this new Blade file and add:
+
+```php
+<x-layouts.app :title="__('Privacy')">
+
+    <div class="flex items-center justify-center w-full
+            transition-opacity opacity-100 duration-750
+            lg:grow starting:opacity-0">
+
+        <main class="w-full max-w-[335px] lg:max-w-4xl
+                     flex flex-col
+                     gap-4">
+
+            <h1 class="text-6xl">Privacy Policy</h1>
+
+            <p>TODO: Need to add the privacy policy here.</p>
+
+        </main>
+    </div>
+
+</x-layouts.app>
+```
+
+For the other pages repeat the above, using the appropriate view name and updating the title 
+and text in each file.
+
+
+Fixing the Menu Entries
+
+At the moment if you attempt to go to the menu and click on About, you just get the home page.
+
+We need to update the routes used in the app layout's menu/navigation.
+
+Open the `resources/views/components/layouts/app.blade.php` file.
+
+Locate the code:
+
+```php
+        <a href="{{ route('app') }}">
+            <x-app-logo width="24" height="24"/>
+            <span class="sr-only">{{ config('app.name') }}</span>
+        </a>
+```
+
+Change the `route('app')` to `route('home')`. This will make the logo point to the home page.
+
+
+Next locate the three 
+
+```php
+<x-navbar.item href="{{ route('home') }}">
+    {{ __('About') }}
+</x-navbar.item>
+<x-navbar.item href="{{ route('home') }}">
+    {{ __('Privacy') }}
+</x-navbar.item>
+<x-navbar.item href="{{ route('home') }}">
+    {{ __('Contact Us') }}
+</x-navbar.item>
+```
+
+Update each route to the appropriate entry:
+
+- About: `route('about')`
+- Contact Us: `route('contact-us')`
+- Privacy: `route('privacy')`
+
+
+Exercise: Complete the same task for the mobile navigation and also in the page footer!
+
+
+
 
 
 
