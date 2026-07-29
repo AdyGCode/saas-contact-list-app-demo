@@ -8,7 +8,12 @@
                      flex flex-col
                      gap-4">
 
-            <h1 class="text-6xl">Contact Us</h1>
+            <header class="flex justify-between">
+                <h1 class="text-6xl">
+                    Contact Us
+                </h1>
+                <x-phosphor-paper-plane-tilt class="text-sm w-16"/>
+            </header>
 
             <!-- TODO: Need to add Contact Us page content here. -->
 

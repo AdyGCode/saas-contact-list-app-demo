@@ -7,8 +7,12 @@
         <main class="w-full max-w-[335px] lg:max-w-4xl
                      flex flex-col
                      gap-4">
-
-            <h1 class="text-6xl">About</h1>
+            <header class="flex justify-between">
+                <h1 class="text-6xl">
+                    About
+                </h1>
+                <x-phosphor-info class="text-sm w-16"/>
+            </header>
 
             <!-- TODO: Need to add the privacy policy here. -->
 

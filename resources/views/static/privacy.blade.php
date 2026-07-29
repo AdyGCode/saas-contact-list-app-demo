@@ -8,7 +8,12 @@
                      flex flex-col
                      gap-4">
 
-            <h1 class="text-6xl">Privacy Policy</h1>
+            <header class="flex justify-between">
+                <h1 class="text-6xl">
+                    Privacy Policy
+                </h1>
+                <x-phosphor-cookie class="text-sm w-16"/>
+            </header>
 
             <!-- TODO: Need to add the privacy policy here. -->
 
