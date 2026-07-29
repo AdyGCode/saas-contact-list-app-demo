@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             // ContactSeeder::class,
 
             // This is for demo purposes only
-            // DemoSeeder::class,
+            DemoOrderSeeder::class,
+            DemoIconSeeder::class,
         ]);
     }
 }

@@ -281,10 +281,16 @@
                     Copyright © 2026 YOURNAME
                 </li>
             </ul>
-            <x-link href="{{ route('home') }}"
-                    class="text-gray-500 text-xs">
-                Demo
-            </x-link>
+            <p class="text-gray-500 text-xs mt-4">Demo:
+                <x-link href="{{ route('demo') }}"
+                        class="text-gray-500 text-xs underline-offset-3">
+                    Components
+                </x-link>
+                <x-link href="{{ route('demo-icons') }}"
+                        class="text-gray-500 text-xs underline-offset-3">
+                    Icons
+                </x-link>
+            </p>
         </section>
 
         <section class="col-span-1">
@@ -292,19 +298,19 @@
             <ul>
                 <li>
                     <x-link href="{{ route('about') }}"
-                            class="text-gray-500 text-xs">
+                            class="text-gray-500 text-xs no-underline!">
                         About
                     </x-link>
                 </li>
                 <li>
                     <x-link href="{{ route('privacy') }}"
-                            class="text-gray-500 text-xs">
+                            class="text-gray-500 text-xs no-underline!">
                         Privacy
                     </x-link>
                 </li>
                 <li>
                     <x-link href="{{ route('contact-us') }}"
-                            class="text-gray-500 text-xs">
+                            class="text-gray-500 text-xs no-underline!">
                         Contact Us
                     </x-link>
                 </li>
@@ -316,20 +322,24 @@
             <ul>
                 <li>
                     <x-link href="https://northmetrotafe.wa.edu.au" target="_blank"
-                            class="text-gray-500 text-xs">
+                            class="text-gray-500 text-xs no-underline!">
                         North Metro TAFE
+                        <x-phosphor-arrow-up-right class="w-3 text-red-500 inline"/>
                     </x-link>
                 </li>
                 <li>
-                    <x-link href="https://github.com/AdyGCode/saas-contact-list-app" target="_blank"
-                            class="text-gray-500 text-xs">
+                    <x-link href="https://github.com/AdyGCode/saas-contact-list-app"
+                            target="_blank"
+                            class="text-gray-500 text-xs no-underline!">
                         GitHub Repo
+                        <x-phosphor-arrow-up-right class="w-3 text-red-500 inline"/>
                     </x-link>
                 </li>
                 <li>
                     <x-link href="https://northmetrotafe.wa.edu.au" target="_blank"
-                            class="text-gray-500 text-xs">
+                            class="text-gray-500 text-xs no-underline!">
                         North Metro TAFE
+                        <x-phosphor-arrow-up-right class="w-3 text-red-500 inline"/>
                     </x-link>
                 </li>
             </ul>

@@ -7,4 +7,6 @@
     'year' => 'numeric',
     'hour' => 'numeric',
     'minute' => '2-digit',
-  ]) }}>{{ $datetime }}</local-time>
+  ]) }}>
+    {{ $datetime }}
+</local-time>

@@ -288,7 +288,6 @@ flowchart LR
     ROUTES["routes"]
     WEB['web.php']
     CONSOLE['console.php']
-    
     ROOT --> ROUTES
     ROUTES --> WEB
     ROUTES --> CONSOLE
@@ -303,22 +302,20 @@ flowchart LR
     WEB['web']
     CONSOLE['console']
     ADMIN['admin']
-    
-    
     ROOT --> ROUTES
-    ROUTES-->ADMIN
+    ROUTES --> ADMIN
     ROUTES --> WEB
     ROUTES --> CONSOLE
-    
-    ADMIN-->ADMIN_ROUTES['admin.php']
-    ADMIN-->ADMIN_USERS['users.php']
-    WEB-->WEB_STATIC['static.php']
-    WEB-->WEB_TEAMS['teams.php']
-    WEB-->WEB_GENERAL['web.php']
-    CONSOLE-->CONSOLE_ROUTES['console.php']
+    ADMIN --> ADMIN_ROUTES['admin.php']
+    ADMIN --> ADMIN_USERS['users.php']
+    WEB --> WEB_STATIC['static.php']
+    WEB --> WEB_TEAMS['teams.php']
+    WEB --> WEB_GENERAL['web.php']
+    CONSOLE --> CONSOLE_ROUTES['console.php']
 ```
 
 Create the folders using:
+
 ```shell
 mkdir -p routes/{web,admin,console}
 touch routes/{web,admin,console}/default.php
@@ -330,7 +327,7 @@ cp routes/console.php routes/console/console.php
 cp routes/web.php routes/web/web.php
 ```
 
-> This creates some empty files ready, plus also copies the original routes files into 
+> This creates some empty files ready, plus also copies the original routes files into
 > their respective folders. These, temporarily, act as a backup of the originals.
 
 Open the `routes/console.php` file and update to read:
@@ -375,7 +372,7 @@ include_once "{$basePath}/routes/web/web.php";
 We are now going to copy code from the backup files into the respective route files.
 
 > As these files are larger in most cases, we will link to the source files for viewing:
-> 
+>
 > - [`routes/web/static.php`](routes/web/static.php)
 > - [`routes/web/profile.php`](routes/web/profile.php)
 > - [`routes/web/teams.php`](routes/web/teams.php)
@@ -383,9 +380,9 @@ We are now going to copy code from the backup files into the respective route fi
 > - [`routes/console/inspire.php`](routes/console/inspire.php)
 > - [`routes/web.php`](routes/web/web.php)
 > - [`routes/console.php`](routes/console/console.php)
-> - 
+> -
 
-You should comment out ALL the `routes/web/web.php` routes as they have been moved to 
+You should comment out ALL the `routes/web/web.php` routes as they have been moved to
 representational files above (e.g. teams routes to the `teams.php` route file).
 
 Likewise, the same should be done for the `routes/console/console.php` routes.
@@ -403,6 +400,7 @@ Update the Application View Template
 Our next step is to update the `resources/views/components/layouts/app.blade.php` file.
 
 We will be:
+
 - Using `@auth() ... @endauth` to show sections of the page when the user is LOGGED IN.
 - Using the `x-button` component for buttons
 - Using the `x-navbar` and `x-navbar-item` to create navigation bar(s) and "links"
@@ -414,15 +412,15 @@ In the steps below, we will show the section fo code to change, and the updated 
 > Before you continue, so that you can double check each change as it happens, you will need to:
 > - Go to http://localhost:8000
 > - Click Login button
-> - Enter the user email of `admin@example.com` and password `Password1`. 
-> 
-> This will log you in and show you the dashboard, which is shown to users when 
+> - Enter the user email of `admin@example.com` and password `Password1`.
+>
+> This will log you in and show you the dashboard, which is shown to users when
 > successfully authenticated.
 
 
 Open the `resources/views/components/layouts/app.blade.php` file.
 
-Some changes are a stylistic changes to make the code more readable (e.g. splitting long 
+Some changes are a stylistic changes to make the code more readable (e.g. splitting long
 lines into shorter ones).
 
 Locate: the first `x-container` and change:
@@ -522,19 +520,19 @@ About, Privacy, etc --}}` with the required links:
 </x-navbar.item>
 ```
 
-For the time being, we will use the `home` route, but later we will be adding the static 
+For the time being, we will use the `home` route, but later we will be adding the static
 pages and update these routes.
 
 Here is what you should see:
 
 ![Updated navigation bar with about, privacy and contact us options](documentation/img/auth-user-navbar-2.png)
 
-And if you hover over a navigation item it should be highlighted with a light shading of the 
+And if you hover over a navigation item it should be highlighted with a light shading of the
 background and darker text.
 
 ![Showing the mouse hover effect on navigation item](documentation/img/auth-user-navbar-3.png)
 
-Now we are going to close the navbar, add a spacer that fills in between the two parts of 
+Now we are going to close the navbar, add a spacer that fills in between the two parts of
 the navbar, and then re-open the navbar.
 
 Immediately after the Contact Us `</x-navbar.item>` we will have:
@@ -551,8 +549,7 @@ This should shift the Untitled Team navbar item to the right.
 
 ![Navbar shown with Untitled Team moved right](documentation/img/auth-user-navbar-4.png)
 
-
-Our next step is to add the Guest items. 
+Our next step is to add the Guest items.
 
 The guest items are shown for user who are not logged in. That is unauthenticated.
 
@@ -580,7 +577,7 @@ We will add code between `#guest()` and `@else`:
 
 These lines will add a login and register link to the layout when not authenticated.
 
-> You will not see this untile later, when we replace the welcome page and use the app 
+> You will not see this untile later, when we replace the welcome page and use the app
 > layout for the base template.
 
 We do not need to change the code for the Teams Link/Dropdown, but we can tidy it up a bit:
@@ -622,17 +619,17 @@ We do not need to change the code for the Teams Link/Dropdown, but we can tidy i
 </x-navbar>
 ```
 
-We should see a `<x-spacer />` at around line 92, this can be removed with the 
+We should see a `<x-spacer />` at around line 92, this can be removed with the
 effect of the Team name will now be close to the loggina in usr icon/menu.
 
 ![Spacer removed and team name now next to the user icon](documentation/img/auth-user-navbar-5.png)
 
 Desktop Navigation menu time.
 
-We are now able to add the desktop navigation menu, but onky allowing it to be shown when 
+We are now able to add the desktop navigation menu, but onky allowing it to be shown when
 logged in.
 
-You will find the HTML comment for Desktop User Menu. After this, and before the button, add 
+You will find the HTML comment for Desktop User Menu. After this, and before the button, add
 the `@auth()` blade macro.
 
 ```php
@@ -661,7 +658,7 @@ Before the `</x-container>` and immediately after the `</x-popover>` add `@endau
 <x-container class="flex items-center max-lg:hidden">
 ```
 
-Now insert a `@auth()` and `@endauth` wrapper around the  container that follows the above:
+Now insert a `@auth()` and `@endauth` wrapper around the container that follows the above:
 
 ```php
 @auth()
@@ -681,7 +678,7 @@ Now insert a `@auth()` and `@endauth` wrapper around the  container that follows
 @endauth()
 ```
 
-We are leaving this here, so that when we add functionality to the application, we can add 
+We are leaving this here, so that when we add functionality to the application, we can add
 menu items to the dashboard as needed.
 
 At the moment the menu is for the dashboard, the current team members, and team settings.
@@ -694,7 +691,7 @@ The mobile section of the navigation will follow the same for of updates.
 
 After our changes, we should find `<x-modal id="mobile_nav"` at approximatelky line 135.
 
-The first `<x-navlist>` will need a `@guest()` added immediately after, and it's 
+The first `<x-navlist>` will need a `@guest()` added immediately after, and it's
 corresponding `</x-navlist>` will have the `@endguest` immediatley before it (around line 184):
 
 ```php
@@ -732,7 +729,7 @@ authenticated navigation options:
 @else
 ```
 
-After the else we then make a couple of changes. Firstly adding the dashboard link to 
+After the else we then make a couple of changes. Firstly adding the dashboard link to
 immediately after the `@else`, plus open a `x-navlist.group` to wrap the existing toggle button:
 
 ```php
@@ -746,7 +743,7 @@ immediately after the `@else`, plus open a `x-navlist.group` to wrap the existin
                 command="toggle-popover"
 ```
 
-Then we remove the extra dashboard entry that is just after `New Team` popover and before the 
+Then we remove the extra dashboard entry that is just after `New Team` popover and before the
 `Members` link.
 
 ```php
@@ -762,12 +759,12 @@ Then we remove the extra dashboard entry that is just after `New Team` popover a
 </x-navlist.item>
 ```
 
-We are almost done with the navigation. The last part is to add the "standard" navigation 
+We are almost done with the navigation. The last part is to add the "standard" navigation
 items for about, contact us et al.
 
 Head down the code to approximately line 220 where you will find the `@endcan`.
 
-After this add a new `<x-navlist.group>`, and close it before the `</div>` and `</x-modal>` 
+After this add a new `<x-navlist.group>`, and close it before the `</div>` and `</x-modal>`
 lines.
 
 We add the required defautl menu links at this point as well:
@@ -801,14 +798,13 @@ Here is the final "mobile" navigation as it stands with our changes:
 
 ![Picture showing the expanded Mobile Navigation](documentation/img/auth-user-navbar-6.png)
 
-
 Footer
 
 The last step will be to add a Footer.
 
 Scroll down to the end of the template, locate the `</main>`.
 
-It is immediately after this we add new code. We have shown it here without the full footer 
+It is immediately after this we add new code. We have shown it here without the full footer
 entry.
 
 ```php
@@ -836,13 +832,12 @@ So what will be added to the footer?
 - Section B: General Navigation area
 - Section C: Useful Links area
 
-The general navigation could be utilised in many ways, for this demo we add our standard 
+The general navigation could be utilised in many ways, for this demo we add our standard
 navigation items.
 
 The final result will looks similar to this:
 
 ![Picture showing the footer details](documentation/img/auth-user-footer-1.png)
-
 
 Footer Sections
 
@@ -851,7 +846,6 @@ Replace the `{{-- Add footer code here --}}` comment with THREE `section`s.
 > Trick: use Emmett coding to speed up the process if your IDE supports it.
 > ...
 > Type in `section*3` then press the <kbd>TAB</kbd> once to get:
-
 
 ```php
 <section></section>
@@ -958,21 +952,20 @@ Section C: useful Links
 
 So that is the updated template completed.
 
-If you go back to your browser and refresh, when you log in should, if all code is correct, get 
+If you go back to your browser and refresh, when you log in should, if all code is correct, get
 the new updated layout.
-
 
 We are now able to update pages (Welcome/Home) and add new pages (About, Contact Us et al).
 
 
-> Aside: The code in the version controlled repository contains some extra changes that 
-> include moving the team member settings and list of team members options into the drop 
-> down with the team name. 
-> 
+> Aside: The code in the version controlled repository contains some extra changes that
+> include moving the team member settings and list of team members options into the drop
+> down with the team name.
+>
 > This reduces visual clutter, but at the cost of possible ease of use.
-> 
-> There may also be some other small UI tweaks, such as number of columns shown at various 
-> screen sizes. 
+>
+> There may also be some other small UI tweaks, such as number of columns shown at various
+> screen sizes.
 
 
 ---
@@ -989,21 +982,18 @@ flowchart LR
     RES --> ADMIN[admin]
     RES --> CLIENT[client]
     RES --> STATIC[static]
-    
     STATIC --> HOME[welcome.blade.php]
     STATIC --> ABOUT[about.blade.php]
     STATIC --> PRIVACY[privacy.blade.php]
     STATIC --> CONTACT[contact-us.blade.php]
-    
     CLIENT --> CONTACTS[contacts]
     CLIENT --> CATEGORIES[categories]
-    
     ADMIN --> TEAMS[teams]
     ADMIN --> USERS[users]
     ADMIN --> ADMIN_CATEGORIES[categories]
 ```
 
-To create the base folder structure you may click on the folder to contain the new 
+To create the base folder structure you may click on the folder to contain the new
 directory/folder, then use the File --> New --> Directory steps.
 
 Alternatively, and probably at least 3&times; faster is to use the commands:
@@ -1023,7 +1013,6 @@ touch resources/views/admin/{teams,users,categories}/.gitignore
 ```
 
 You now have 8 "new" folders with 8 `.gitignore` files in just a few commands.
-
 
 Create a new welcome page
 
@@ -1056,7 +1045,7 @@ Open this new blank file, and add:
 </x-layouts.app>
 ```
 
-You may need to refresh the page, and when you do the new front page will be pretty bare. 
+You may need to refresh the page, and when you do the new front page will be pretty bare.
 it will have the site logo, menu bar and footer.
 
 ![New 'blank' Home Page](documentation/img/home-page-1.png)
@@ -1065,12 +1054,12 @@ Now we can start to fill out the page.
 
 Around the two comment lines we are going to add a "wrapper":
 
-> Note: 
+> Note:
 >
 > We add colour to the backgrounds to make it easier for you to identify each part.
 > Once the pages are completed, we will update these to suit our style.
 >
-> Also, we have made the transition last for 2 seconds (2000ms) so that it is more noticable 
+> Also, we have made the transition last for 2 seconds (2000ms) so that it is more noticable
 > during development. This would normally be about 750ms.
 
 ```php
@@ -1187,18 +1176,17 @@ and in Dark mode:
 
 ![Home (Welcome) Page layout in dark mode](documentation/img/home-page-3.png)
 
-
-
 Static Page Controller
 
-We are now ready to make a change in how we handle the Home page, ready for the other 
+We are now ready to make a change in how we handle the Home page, ready for the other
 "static" pages such as privacy policy, contact us, et al.
 
-We call these pages "static" as they may perform some databse interaction, but are not a 
-major feature. The home page is a good example, but also the contact-us page that may have a 
+We call these pages "static" as they may perform some databse interaction, but are not a
+major feature. The home page is a good example, but also the contact-us page that may have a
 form that user's could complete to send a message to the site owners.
 
 We will be doing the following:
+
 - Creating a Static Page Controller
 - Updating the static page routes
 - Moving the home page to the `views/static` pages folder
@@ -1213,7 +1201,7 @@ php artisan make:controller StaticPageController
 
 Now open the new `App/Http/Controllers/StaticPageController.php` file.
 
-We are going to add the `index` method, which will be for the home route, but also we will 
+We are going to add the `index` method, which will be for the home route, but also we will
 create a `home` method as a backup.
 
 ```php
@@ -1238,12 +1226,11 @@ public function home()
 }
 ```
 
-
 Update the Static Routes
 
-We next update the `routes/web/static.php` file. Add 
-`use App\Http\Controllers\StaticPageController;` to ensure that the Static page controller 
-is available, then, comment out the `Route::view` line and add a new `Route::get` line. 
+We next update the `routes/web/static.php` file. Add
+`use App\Http\Controllers\StaticPageController;` to ensure that the Static page controller
+is available, then, comment out the `Route::view` line and add a new `Route::get` line.
 
 ```php
 use App\Http\Controllers\StaticPageController;
@@ -1261,12 +1248,12 @@ Now the final step is to move the home page into the `views/static` folder:
 mv resources/views/home.blade.php resources/views/static/home.blade.php
 ```
 
-Refreshing the home page should result in the site updating and showing the home page as 
+Refreshing the home page should result in the site updating and showing the home page as
 expected.
 
 Adding Placeholders for Static Pages
 
-As a mini exercise we will now quickly create placeholder pages for the Privacy, Contact-Us 
+As a mini exercise we will now quickly create placeholder pages for the Privacy, Contact-Us
 and About, plus add the routes and Static Page Controller methods.
 
 The placeholder pages will look line this:
@@ -1294,11 +1281,9 @@ Open the `routes/web/static.php` file and add the required routes. For example:
 
 Do the same for the Privacy and Contact Us pages.
 
-
-
 Add the Methods to the Static Page Controller
 
-Open the `App/Http/Controllers/StaticPageController.php` file and add new methods for each 
+Open the `App/Http/Controllers/StaticPageController.php` file and add new methods for each
 of the new pages. Here is an example.
 
 ```php
@@ -1316,7 +1301,6 @@ Create placeholder views for Privacy, Contact Us and About
 To do this we will create a blank file, then use the App layout to give the page basics.
 
 In the content area we will add a Simple placeholder to remind us to complete this later.
-
 
 Create a blank blade view file
 
@@ -1348,9 +1332,8 @@ Open this new Blade file and add:
 </x-layouts.app>
 ```
 
-For the other pages repeat the above, using the appropriate view name and updating the title 
+For the other pages repeat the above, using the appropriate view name and updating the title
 and text in each file.
-
 
 Fixing the Menu Entries
 
@@ -1371,8 +1354,7 @@ Locate the code:
 
 Change the `route('app')` to `route('home')`. This will make the logo point to the home page.
 
-
-Next locate the three 
+Next locate the three
 
 ```php
 <x-navbar.item href="{{ route('home') }}">
@@ -1392,7 +1374,6 @@ Update each route to the appropriate entry:
 - Contact Us: `route('contact-us')`
 - Privacy: `route('privacy')`
 
-
 Exercise: Complete the same task for the mobile navigation and also in the page footer!
 
 
@@ -1400,5 +1381,151 @@ Exercise: Complete the same task for the mobile navigation and also in the page 
 ---
 
 Create Demo Page & Support Data
-- Create demo Controller, Model, Routes, Migration
+
+- Create demo Controller, Model, Routes, Migration and Seeder
 - Create static demo view
+
+The Demo will contain:
+
+- Demos of the components that are part of the I'm A Crayon kit.
+- A list of the Phosphor Icons
+
+We will have TWO Demo models:
+
+- DemoOrder: to assist in demonstrating a table in the demo
+- DemoIcon: containing a list of icons
+
+```shell
+php artisan make:model DemoOrder --migration --seed 
+php artisan make:model DemoIcon --migration --seed 
+```
+
+The DemoOrder model will contain:
+
+| Field        | Type       | Other            |
+|--------------|------------|------------------|
+| id           | big integer | unsigned, PK     |
+| customer     | string(64) |                  |
+| date         | timestamp |                  |
+| status       | string(32) |                  |
+| status_color | string(32) |                  |
+| amount       | integer    |                  |
+
+
+The DemoIcon model will contain:
+
+| Field        | Type          | Other            |
+|--------------|---------------|------------------|
+| id           | big integer   | unsigned, PK     |
+| family       | string(72)    | default: UNKNOWN |
+| name         | string(96)    |                  |
+| status       | small integer | 0=free, 1=pro    |
+
+We are not using these models for any CRUD, so no changes will be made to the models.
+
+Demo Controller
+
+The demo controller is the primary demo page, showing the components. One of these 
+componenets is a table of orders. The DemoOrder model contains the data for this demo page.
+
+Likewise, the demo controller is used to display a page of the icons [Phosphor  
+(https://phosphoricons.com/)](https://phosphoricons.com) available 
+within the kit.
+
+Create the Demo controller using:
+
+```shell
+php artisan make:controller DemoController
+```
+
+Open the controller and add, before the class line, and after the namespace line:
+
+```php
+use App\Models\DemoIcon;
+use App\Models\DemoOrder;
+use Illuminate\Http\Request;
+```
+
+This includes the two Demo models, and the Request class used to process form and other 
+submissions.
+
+Within the class definition we add the index method:
+
+```php
+class DemoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $orders = DemoOrder::paginate(3);
+
+        return view('static.demo.index')
+            ->with('test', 'TESTING')
+            ->with('orders', $orders);
+    }
+
+    // demoForm and icons methods will go here
+}
+```
+
+Next, lets add the demoForm method. 
+
+The method goes immediately after the index method.
+
+The `demoForm` method allows us to demonstrate a form 
+submission using the POST method:
+
+```php
+/**
+ * Process the demo form submission
+ * 
+ * @param  Request  $request
+ * @return Factory|View
+ */
+public function demoForm(Request $request)
+{
+    $validated = $request->validate([
+
+        'email' => 'required|email',
+    ]);
+
+    $orders = DemoOrder::paginate(3);
+
+    return view('static.demo.index')
+        ->with('test', 'TESTING')
+        ->with('orders', $orders);
+}
+```
+
+Finally, the icons method is added, immediatley after the `demoForm` methid definition:
+
+```php
+/**
+ * Display a grid of the icons, with search ability.
+ */
+public function icons(Request $request)
+{
+    $validated = $request->validate([
+        'iconSearch' => ['sometimes', 'string', 'max:16', 'alpha'],
+        'page'=>['sometimes', 'numeric', "min:1"],
+    ]);
+
+    $searchFor = $validated['iconSearch'] ?? '';
+    $icons = DemoIcon::where('name','like', '%'.$searchFor."%")->paginate(30);
+
+    return view('static.demo.icons')
+        ->with('icons', $icons)
+        ->with('iconSearch', $searchFor)
+        ->with('page', $validated['page']??1);
+}
+```
+
+Demo Component and Icon Pages
+
+We are not going to explain how these pages were created.
+
+They are available to view in the Code Repository
+- [`resources/views/static/demo/index.blade.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/resources/views/static/demo)
+- [`resources/views/static/demo/icons.blade.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/resources/views/static/demo)
