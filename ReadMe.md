@@ -1423,10 +1423,26 @@ The DemoIcon model will contain:
 
 We are not using these models for any CRUD, so no changes will be made to the models.
 
+Demo Migrations
+
+We refer you to the Source Repo for these files.
+
+- [`2026_07_29_052404_create_demo_orders_table.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/database/migrations)
+- [`2026_07_29_052411_create_demo_icons_table.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/database/migrations)
+
+
+Demo Seeders
+
+We refer you to the Source Repo for these files.
+
+- [`DatabaseSeeder.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/database/seeders/DatabaseSeeder.php)
+- [`DemoIconSeeder.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/database/seeders/DemoIconSeeder.php)
+- [`DemoOrderSeeder.php`](https://github.com/AdyGCode/saas-contact-list-app-demo/tree/main/database/seeders/DemoOrderSeeder.php)
+
 Demo Controller
 
 The demo controller is the primary demo page, showing the components. One of these 
-componenets is a table of orders. The DemoOrder model contains the data for this demo page.
+components is a table of orders. The DemoOrder model contains the data for this demo page.
 
 Likewise, the demo controller is used to display a page of the icons [Phosphor  
 (https://phosphoricons.com/)](https://phosphoricons.com) available 
