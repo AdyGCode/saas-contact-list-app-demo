@@ -39,6 +39,12 @@ jobs:
       - name: Install Node Dependencies
         run: pnpm i
 
+      - name: Approve PNPM builds
+        run: pnpm approve-builds --all
+
+      - name: Install Node Dependencies
+        run: pnpm i
+
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
