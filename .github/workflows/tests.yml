@@ -29,16 +29,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
 
-      - name: Setup Pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: latest
-
       - name: Install Node Dependencies
-        run: pnpm i
-
-      - name: Approve PNPM builds
-        run: pnpm approve-builds --all
+        run: npm i
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
