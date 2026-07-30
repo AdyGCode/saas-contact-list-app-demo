@@ -27,23 +27,19 @@ jobs:
           coverage: xdebug
 
       - name: Setup Node
+        uses: actions/setup-node@v7
+
+      - name: Setup Pnpm
         uses: pnpm/action-setup@v6
         with:
           version: latest
-          standalone: true
           cache: true
 
-      - name: Approve PNPM builds
-        run: pnpm approve-builds --all
-
       - name: Install Node Dependencies
         run: pnpm i
 
       - name: Approve PNPM builds
         run: pnpm approve-builds --all
-
-      - name: Install Node Dependencies
-        run: pnpm i
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
