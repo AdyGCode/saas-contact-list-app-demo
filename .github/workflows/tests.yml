@@ -33,6 +33,9 @@ jobs:
           standalone: true
           cache: true
 
+      - name: Approve PNPM builds
+        run: pnpm approve-builds --all
+
       - name: Install Node Dependencies
         run: pnpm i
 
